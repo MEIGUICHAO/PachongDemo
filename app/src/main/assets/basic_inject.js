@@ -134,7 +134,7 @@ function commitData(time){
 
 
 function doClickByCN(className,time) {
-  var itemli = document.getElementsByTagName("li");
+  var itemli = document.getElementsByClassName(className);
   localMethod.JI_showToast("length£º"+itemli.length);
 
   var btn = document.getElementsByClassName(className)[0];

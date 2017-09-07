@@ -74,6 +74,18 @@ public class WA_YundaFragment extends WA_BaseFragment
 			}
 		});
 	}
+	/** Function：点击进入商铺(BelongTo Step2) */
+	protected void doClick(final WA_Parameters parameter)
+	{
+		handler.post(new Runnable()
+		{
+			@Override
+			public void run()
+			{
+				shopCLick(listWeb, parameter.getKeywordStr());
+			}
+		});
+	}
 
 	/** Function：首次进行商品浏览(BelongTo Step3) */
 	protected void doScan(final WA_Parameters parameter)
@@ -197,8 +209,17 @@ public class WA_YundaFragment extends WA_BaseFragment
 	private void searchFor(WebView webView, String keywordStr)
 	{
 		// 拼接业务逻辑
-		String logicStr = "doInputByCN(\"txt\",\"" + keywordStr + "\",2);" + "doClickByCN(\"searchbtn\",4);";
-
+		String logicStr = "doInputByCN(\"txt\",\"" + keywordStr + "\",2);"
+				+ "doClickByCN(\"searchbtn\",4);";
+//				+ "doClickByCN(\"list-item\",4);";
+		String completeJs = doAutoTest(logicStr);
+		loadUrl(webView, completeJs);
+	}
+	/** 输入搜索内容，然后查找 */
+	private void shopCLick(WebView webView, String keywordStr)
+	{
+		// 拼接业务逻辑
+		String logicStr = "doClickByCN(\"list-item\",2);";
 		String completeJs = doAutoTest(logicStr);
 		loadUrl(webView, completeJs);
 	}

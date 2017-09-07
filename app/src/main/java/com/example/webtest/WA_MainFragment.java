@@ -90,7 +90,9 @@ public class WA_MainFragment extends WA_YundaFragment
 		webSetting.setLoadWithOverviewMode(true);
 		webSetting.setAllowFileAccess(true);
 
-		listWeb.loadUrl("https://m.taobao.com");
+		listWeb.loadUrl("https://shop372440379.m.taobao.com/?shop_id=372440379&user_id=2997369362#list");
+		https://shop.m.taobao.com/shop/shop_index.htm?shop_id=372440379
+//		listWeb.loadUrl("https://m.taobao.com");
 		listWeb.setWebViewClient(new MyListWebViewClient());
 		mLocalMethod = new WA_YundaFragment.LocalMethod(getActivity(), parameter);
 		listWeb.addJavascriptInterface(mLocalMethod, "localMethod");
@@ -129,6 +131,9 @@ public class WA_MainFragment extends WA_YundaFragment
 
 						// step3：输入搜索关键字并点击搜索按钮#####################（Page2-搜索页面）
 						doSearch(parameter);
+						doSleep(6);
+
+						doClick(parameter);
 						doSleep(6);
 
 						// step4：根据筛选条件和销量优先顺序排序###################（Page2-搜索页面）
