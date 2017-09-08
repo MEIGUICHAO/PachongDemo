@@ -17,8 +17,10 @@ import android.widget.Toast;
  * @des commmon tools
  */
 public class WA_BaseFragment extends Fragment
+
 {
 	private static final String LOG_FILE_PATH = Environment.getExternalStorageDirectory().getPath() + "/web_auto.log";
+	public WA_YundaFragment.LocalMethod mLocalMethod;
 
 	/** 注入需自动执行的JS代码 */
 	protected String doAutoTest(String code)

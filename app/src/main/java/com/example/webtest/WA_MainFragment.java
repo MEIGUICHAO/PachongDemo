@@ -25,7 +25,6 @@ public class WA_MainFragment extends WA_YundaFragment
 	private static final String LOGIC_JS_PATH = "logic_inject.js";
 
 	private Button startBtn;
-	private LocalMethod mLocalMethod;
 	private WA_Parameters parameter;
 	private String injectJS;
 
@@ -90,13 +89,15 @@ public class WA_MainFragment extends WA_YundaFragment
 		webSetting.setLoadWithOverviewMode(true);
 		webSetting.setAllowFileAccess(true);
 
-//		listWeb.loadUrl("https://shop.m.taobao.com/shop/shop_index.htm?shop_id=372440379");
+//		listWeb.loadUrl("https://shop372440379.m.taobao.com/?shop_id=372440379&user_id=2997369362#list");
+		listWeb.loadUrl("https://shop.m.taobao.com/shop/shop_index.htm?shop_id=372440379");
+//		listWeb.loadUrl("https://forever21.m.tmall.com/?spm=a220m.6910245.0.0.1c0bb1cbQZkyon&shop_id=69644818");
 ////		listWeb.loadUrl("https://shop372440379.m.taobao.com/?shop_id=372440379&user_id=2997369362#list");
 //
 //		https://shop.m.taobao.com/shop/shop_index.htm?shop_id=372440379
-		listWeb.loadUrl("https://m.taobao.com");
+//		listWeb.loadUrl("https://m.taobao.com");
 		listWeb.setWebViewClient(new MyListWebViewClient());
-		mLocalMethod = new WA_YundaFragment.LocalMethod(getActivity(), parameter);
+		mLocalMethod = new WA_YundaFragment.LocalMethod(getActivity(), parameter, listWeb);
 		listWeb.addJavascriptInterface(mLocalMethod, "localMethod");
 	}
 
@@ -123,35 +124,37 @@ public class WA_MainFragment extends WA_YundaFragment
 					@Override
 					public void run()
 					{
-						// step1：点击搜索框进行商品搜索##########################（Page1-首页）
-						doEnterSearchPage();
-						doSleep(6);
-
-						// step2：选择店铺类型####################################（Page2-搜索页面）
-						doSelectStoreType(parameter);
-						doSleep(6);
-
-						// step3：输入搜索关键字并点击搜索按钮#####################（Page2-搜索页面）
-						doSearch(parameter);
-						doSleep(6);
-
-						doClick(parameter);
-						doSleep(6);
-
-//						 step4：根据筛选条件和销量优先顺序排序###################（Page2-搜索页面）
+//						// step1：点击搜索框进行商品搜索##########################（Page1-首页）
+//						doEnterSearchPage();
+//						doSleep(6);
+//
+//						// step2：选择店铺类型####################################（Page2-搜索页面）
+//						doSelectStoreType(parameter);
+//						doSleep(6);
+//
+//						// step3：输入搜索关键字并点击搜索按钮#####################（Page2-搜索页面）
+//						doSearch(parameter);
+//						doSleep(6);
+//
+//						doClick(parameter);
+//						doSleep(6);
+//
+////						 step4：根据筛选条件和销量优先顺序排序###################（Page2-搜索页面）
 						doOrderBySellAmount();
 						doSleep(3);
 
-						// step5：点击所有宝贝
-						selectAllShop();
-						doSleep(3);
-
-						// step5：点击所有宝贝
-						getHotSellsList();
-						doSleep(3);
-
-						// step5：浏览选择指定商品#################################（Page2-搜索页面——>Page3-详情页面）
-						doScan(parameter);
+//						// step5：点击所有宝贝
+//						selectAllShop();
+//						doSleep(3);
+//
+//						// step5：点击所有宝贝
+////						getHotSellsList();
+////						doSleep(3);
+////						getHotSellsListData();
+////						doSleep(3);
+//
+//						// step5：浏览选择指定商品#################################（Page2-搜索页面——>Page3-详情页面）
+//						doScan(parameter);
 					}
 				}.start();
 			}

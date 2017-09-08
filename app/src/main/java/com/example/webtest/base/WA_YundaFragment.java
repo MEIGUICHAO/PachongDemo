@@ -1,14 +1,20 @@
 package com.example.webtest.base;
 
 import java.io.IOException;
+import java.math.BigDecimal;
 
 import android.content.Context;
 import android.os.Handler;
+import android.text.TextUtils;
+import android.util.Log;
 import android.webkit.JavascriptInterface;
 import android.webkit.WebView;
 import android.widget.Toast;
 
+import com.example.webtest.Utils.CacheUtils;
 import com.example.webtest.io.WA_Parameters;
+
+import static android.content.ContentValues.TAG;
 
 /**
  * @author z.h
@@ -136,6 +142,19 @@ public class WA_YundaFragment extends WA_BaseFragment
 			public void run()
 			{
 				getHotSellsList(listWeb);
+			}
+		});
+	}
+
+	protected void getHotSellsListData()
+	{
+
+		handler.post(new Runnable()
+		{
+			@Override
+			public void run()
+			{
+				getHotSellsListData(listWeb);
 			}
 		});
 	}
@@ -269,22 +288,41 @@ public class WA_YundaFragment extends WA_BaseFragment
 		loadUrl(webView, completeJs);
 	}
 
-	/** 按销量优先排序 */
+	/** 点击分类菜单*/
 	private void orderBySellAmount(WebView webView)
 	{
 		// 拼接业务逻辑
-//		String logicStr = "doTapByParentCN(\"sort-tab\",\"sort\");";
-		String logicStr = "doClickByCN(\"js-nav-csch fun csch\",1);";
-//		String logicStr = "doClickByCN(\"js-sc-m-title big-title omit\",2);";
+		String logicStr0 = "getLengthByCn(\"item J_tabItem\");";
+		String completeJs0 = doAutoTest(logicStr0);
+		loadUrl(webView, completeJs0);
 
-		String completeJs = doAutoTest(logicStr);
-		loadUrl(webView, completeJs);
+		doSleep(2);
+		if (mLocalMethod.isBooleanIndex()) {
+		} else {
+			String logicStr = "doClickByCN(\"js-nav-csch fun csch\",1);";
+			String completeJs = doAutoTest(logicStr);
+			loadUrl(webView, completeJs);
+			doSleep(6);
+			selectAllShop(webView);
+			doSleep(6);
+			getHotSellsList(webView);
+			doSleep(6);
+			getHotSellsListData(webView);
+		}
+
+
+//		String logicStr = "doClickByCN(\"js-nav-csch fun csch\",2);";
+//		String completeJs = doAutoTest(logicStr);
+//		loadUrl(webView, completeJs);
 	}
 
 	private void selectAllShop(WebView webView)
 	{
+
 		// 拼接业务逻辑
+
 		String logicStr = "doClickByCN(\"js-sc-m-title big-title omit\",2);";
+//		String logicStr = "getLengthByCn(\"item J_tabItem\");";
 
 		String completeJs = doAutoTest(logicStr);
 		loadUrl(webView, completeJs);
@@ -293,6 +331,14 @@ public class WA_YundaFragment extends WA_BaseFragment
 	private void getHotSellsList(WebView webView) {
 
 		String logicStr = "getDataByHotSells();";
+
+		String completeJs = doAutoTest(logicStr);
+		loadUrl(webView, completeJs);
+	}
+
+	private void getHotSellsListData(WebView webView) {
+
+		String logicStr = "getHotSellsListData();";
 
 		String completeJs = doAutoTest(logicStr);
 		loadUrl(webView, completeJs);
@@ -350,11 +396,29 @@ public class WA_YundaFragment extends WA_BaseFragment
 	{
 		Context mContext;
 		private WA_Parameters parameter;
+		private WebView webView;
+		private boolean isComplete = false;
 
-		public LocalMethod(Context c, WA_Parameters parameter)
-		{
+		public boolean isComplete() {
+			return isComplete;
+		}
+
+		public void setComplete(boolean complete) {
+			isComplete = complete;
+		}
+
+		public boolean isBooleanIndex() {
+			return booleanIndex;
+		}
+
+		private boolean booleanIndex;
+
+		public LocalMethod(Context c, WA_Parameters parameter,WebView webView) {
+
 			this.mContext = c;
 			this.parameter = parameter;
+			this.webView = webView;
+
 		}
 
 		public WA_Parameters getParameter()
@@ -409,6 +473,28 @@ public class WA_YundaFragment extends WA_BaseFragment
 		{
 			createLog(infoStr);
 		}
+
+
+		@JavascriptInterface
+		public void JI_LOG(String content) {
+			Log.e(TAG, "JI_LOG: " + content);
+			setComplete(true);
+		}
+
+		@JavascriptInterface
+		public void resetComplete() {
+			setComplete(false);
+		}
+
+		@JavascriptInterface
+		public void getBooleanByLength(String content) {
+			if (Integer.parseInt(content) > 0) {
+				booleanIndex = true;
+			} else {
+				booleanIndex = false;
+			}
+		}
+
 	}
 
 }
