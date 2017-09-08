@@ -90,9 +90,11 @@ public class WA_MainFragment extends WA_YundaFragment
 		webSetting.setLoadWithOverviewMode(true);
 		webSetting.setAllowFileAccess(true);
 
-		listWeb.loadUrl("https://shop372440379.m.taobao.com/?shop_id=372440379&user_id=2997369362#list");
-		https://shop.m.taobao.com/shop/shop_index.htm?shop_id=372440379
-//		listWeb.loadUrl("https://m.taobao.com");
+//		listWeb.loadUrl("https://shop.m.taobao.com/shop/shop_index.htm?shop_id=372440379");
+////		listWeb.loadUrl("https://shop372440379.m.taobao.com/?shop_id=372440379&user_id=2997369362#list");
+//
+//		https://shop.m.taobao.com/shop/shop_index.htm?shop_id=372440379
+		listWeb.loadUrl("https://m.taobao.com");
 		listWeb.setWebViewClient(new MyListWebViewClient());
 		mLocalMethod = new WA_YundaFragment.LocalMethod(getActivity(), parameter);
 		listWeb.addJavascriptInterface(mLocalMethod, "localMethod");
@@ -136,8 +138,16 @@ public class WA_MainFragment extends WA_YundaFragment
 						doClick(parameter);
 						doSleep(6);
 
-						// step4：根据筛选条件和销量优先顺序排序###################（Page2-搜索页面）
+//						 step4：根据筛选条件和销量优先顺序排序###################（Page2-搜索页面）
 						doOrderBySellAmount();
+						doSleep(3);
+
+						// step5：点击所有宝贝
+						selectAllShop();
+						doSleep(3);
+
+						// step5：点击所有宝贝
+						getHotSellsList();
 						doSleep(3);
 
 						// step5：浏览选择指定商品#################################（Page2-搜索页面——>Page3-详情页面）

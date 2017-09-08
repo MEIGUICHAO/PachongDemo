@@ -12,137 +12,21 @@ function doClickByRI(resId,time) {
     }
 }
 
-function doClickByTag(){
-  var itemli = document.getElementsByTagName("li");
-  localMethod.JI_showToast("length£º"+itemli.length);
-
-}
-
-function goSc(){
-  var scBtn = document.getElementById('homeMenus').getElementsByTagName("a")[0];
-  scBtn.click();
-  var money = document.getElementById('userinfo_money');
-  localMethod.JI_LOG(money.innerHTML);
-  setTimeout(function(){
-      var oneTenBtn = document.getElementById('cate_menus_50').getElementsByTagName("a")[1];
-      oneTenBtn.click();
-
-      setTimeout(function(){
-          var itema = document.getElementById('framePage').contentWindow.document.getElementsByTagName('input');
-          localMethod.JI_showToast("itema:"+itema.length);
-          if(itema.length<100){
-            goSc();
-          }
-      },1500);
-  },1000);
-
-}
-
-function goFt(){
-  var scBtn = document.getElementById('homeMenus').getElementsByTagName("a")[1];
-  scBtn.click();
-  var money = document.getElementById('userinfo_money');
-  localMethod.JI_LOG(money.innerHTML);
-  setTimeout(function(){
-      var oneTenBtn = document.getElementById('cate_menus_55').getElementsByTagName("a")[1];
-      oneTenBtn.click();
-
-      setTimeout(function(){
-          var itema = document.getElementById('framePage').contentWindow.document.getElementsByTagName('input');
-          localMethod.JI_showToast("itema:"+itema.length);
-          if(itema.length<100){
-            goFt();
-          }
-      },1500);
-  },500);
-}
-
-function goCompareSc(){
-  var scBtn = document.getElementById('homeMenus').getElementsByTagName("a")[0];
-  scBtn.click();
-  var money = document.getElementById('userinfo_money');
-  localMethod.COMPARE_AMOUNT(money.innerHTML);
-  setTimeout(function(){
-      var oneTenBtn = document.getElementById('cate_menus_50').getElementsByTagName("a")[1];
-      oneTenBtn.click();
-
-      setTimeout(function(){
-          var itema = document.getElementById('framePage').contentWindow.document.getElementsByTagName('input');
-          localMethod.JI_showToast("itema:"+itema.length);
-          if(itema.length<100){
-            goCompareSc();
-          }
-      },1500);
-  },1000);
-
-}
-
-function goCompareFt(){
-  var scBtn = document.getElementById('homeMenus').getElementsByTagName("a")[1];
-  scBtn.click();
-  var money = document.getElementById('userinfo_money');
-  localMethod.COMPARE_AMOUNT(money.innerHTML);
-  setTimeout(function(){
-      var oneTenBtn = document.getElementById('cate_menus_55').getElementsByTagName("a")[1];
-      oneTenBtn.click();
-
-      setTimeout(function(){
-          var itema = document.getElementById('framePage').contentWindow.document.getElementsByTagName('input');
-          localMethod.JI_showToast("itema:"+itema.length);
-          if(itema.length<100){
-            goCompareFt();
-          }
-      },1500);
-  },500);
-}
-
-
-function doComfir(){
-
-    setTimeout(function(){
-
-  var btn = document.getElementsByClassName("layui-layer-btn0");
-    localMethod.JI_showToast("btn:"+btn.length);
-    btn[0].click();
-        },3000);
-}
-
-function selectNumRange(position,amount,time){
-
-  setTimeout(function(){
-  var itema = document.getElementById('framePage').contentWindow.document.getElementsByTagName('input');
-  localMethod.JI_showToast("itema:"+itema.length);
-    itema[position].click();
-    itema[position].value = amount;
-  },time);
-
-}
-
-function commitData(time){
-  var commitBtn = document.getElementById('framePage').contentWindow.document.getElementById('openBetWinBtn2');
-    setTimeout(function(){
-        commitBtn.click()
-    },500+time);
-
-    setTimeout(function(){
-
-        var btn = document.getElementsByClassName("layui-layer-btn0");
-        localMethod.JI_showToast("btn:"+btn.length);
-        btn[0].click();
-     },1000+time);
-}
-
-
 function doClickByCN(className,time) {
-  var itemli = document.getElementsByClassName(className);
-  localMethod.JI_showToast("length£º"+itemli.length);
-
+  var cn = document.getElementsByClassName(className);
+  localMethod.JI_showToast("length£º"+cn.length);
   var btn = document.getElementsByClassName(className)[0];
   if(null!=btn){
     setTimeout(function(){
         btn.click();
     },time*1000);
     }
+}
+
+function getDataByHotSells() {
+  var tab = document.getElementsByTagName("li");
+    localMethod.JI_showToast("length£º"+tab[1].innerHTML);
+    tab[1].click();
 }
 
 //Ä£Äâ´¥ÃþÊÂ¼þ

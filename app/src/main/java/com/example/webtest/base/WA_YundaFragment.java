@@ -115,6 +115,31 @@ public class WA_YundaFragment extends WA_BaseFragment
 		});
 	}
 
+	protected void selectAllShop()
+	{
+
+		handler.post(new Runnable()
+		{
+			@Override
+			public void run()
+			{
+				selectAllShop(listWeb);
+			}
+		});
+	}
+	protected void getHotSellsList()
+	{
+
+		handler.post(new Runnable()
+		{
+			@Override
+			public void run()
+			{
+				getHotSellsList(listWeb);
+			}
+		});
+	}
+
 	/** Function：若当前页中不存在该商铺则翻页，同时另一个页面进行随机商品浏览，浏览时长随机(BelongTo Step5) */
 	protected void doFlipAndScan(final WA_Parameters parameter, final int randomTime)
 	{
@@ -248,7 +273,26 @@ public class WA_YundaFragment extends WA_BaseFragment
 	private void orderBySellAmount(WebView webView)
 	{
 		// 拼接业务逻辑
-		String logicStr = "doTapByParentCN(\"sort-tab\",\"sort\");";
+//		String logicStr = "doTapByParentCN(\"sort-tab\",\"sort\");";
+		String logicStr = "doClickByCN(\"js-nav-csch fun csch\",1);";
+//		String logicStr = "doClickByCN(\"js-sc-m-title big-title omit\",2);";
+
+		String completeJs = doAutoTest(logicStr);
+		loadUrl(webView, completeJs);
+	}
+
+	private void selectAllShop(WebView webView)
+	{
+		// 拼接业务逻辑
+		String logicStr = "doClickByCN(\"js-sc-m-title big-title omit\",2);";
+
+		String completeJs = doAutoTest(logicStr);
+		loadUrl(webView, completeJs);
+	}
+
+	private void getHotSellsList(WebView webView) {
+
+		String logicStr = "getDataByHotSells();";
 
 		String completeJs = doAutoTest(logicStr);
 		loadUrl(webView, completeJs);

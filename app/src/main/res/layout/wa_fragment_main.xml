@@ -22,6 +22,7 @@
 
         <WebView
             android:id="@+id/wa_webview_detail"
+            android:visibility="gone"
             android:layout_width="fill_parent"
             android:layout_height="fill_parent"
             android:layout_weight="1" />
