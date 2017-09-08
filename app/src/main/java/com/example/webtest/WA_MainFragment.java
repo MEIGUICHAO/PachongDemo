@@ -90,8 +90,11 @@ public class WA_MainFragment extends WA_YundaFragment
 		webSetting.setAllowFileAccess(true);
 
 //		listWeb.loadUrl("https://shop372440379.m.taobao.com/?shop_id=372440379&user_id=2997369362#list");
-		listWeb.loadUrl("https://shop.m.taobao.com/shop/shop_index.htm?shop_id=372440379");
+//		listWeb.loadUrl("https://shop.m.taobao.com/shop/shop_index.htm?shop_id=372440379");
+//		listWeb.loadUrl("https://forever21.m.tmall.com/shop/shop_auction_search.htm?spm=a320p.7692171.0.0&suid=791583018&sort=default");
+//		listWeb.loadUrl("https://forever21.m.tmall.com/shop/shop_auction_search.htm?spm=a320p.7692171.0.0&suid=791583018&sort=d");
 //		listWeb.loadUrl("https://forever21.m.tmall.com/?spm=a220m.6910245.0.0.1c0bb1cbQZkyon&shop_id=69644818");
+		listWeb.loadUrl("https://mcow.m.tmall.com/?spm=a220m.6910245.0.0.1c0bb1cbyekVWh&user_id=2121960820");
 ////		listWeb.loadUrl("https://shop372440379.m.taobao.com/?shop_id=372440379&user_id=2997369362#list");
 //
 //		https://shop.m.taobao.com/shop/shop_index.htm?shop_id=372440379

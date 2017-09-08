@@ -25,6 +25,28 @@ function doClickByCN(className,time) {
     }
 }
 
+function tabByCN(className,time) {
+  var cn = document.getElementsByClassName(className);
+  localMethod.JI_showToast("length£º"+cn.length);
+  var btn = document.getElementsByClassName(className)[0];
+  if(null!=btn){
+    setTimeout(function(){
+        btn.trigger("tap");
+    },time*1000);
+    }
+}
+
+function doClickByCNandPosition(className,posititon) {
+    localMethod.resetComplete();
+  var cn = document.getElementsByClassName(className);
+  var btn = document.getElementsByClassName(className)[posititon];
+  if(null!=btn){
+    setTimeout(function(){
+        btn.click();
+    },1*1000);
+    }
+}
+
 function getLengthByCn(className) {
     localMethod.resetComplete();
   var cn = document.getElementsByClassName(className);
@@ -46,6 +68,22 @@ function getHotSellsListData() {
   var title = document.getElementsByClassName("d-title");
   var price = document.getElementsByClassName("d-price");
   var num = document.getElementsByClassName("d-num");
+//    localMethod.JI_LOG("length£º"+tab.length);
+
+
+    for (var i = 0; i <title.length ; i++) {
+        localMethod.JI_LOG(title[i].innerHTML);
+        localMethod.JI_LOG(price[i].innerHTML);
+        localMethod.JI_LOG(num[i].innerHTML);
+    }
+
+}
+
+function getTmallHotSellsListData() {
+    localMethod.resetComplete();
+  var title = document.getElementsByClassName("tii_title");
+  var price = document.getElementsByClassName("tii_price");
+  var num = document.getElementsByClassName("tii_sold");
 //    localMethod.JI_LOG("length£º"+tab.length);
 
 
