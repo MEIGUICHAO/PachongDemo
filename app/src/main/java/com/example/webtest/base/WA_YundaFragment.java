@@ -273,49 +273,49 @@ public class WA_YundaFragment extends WA_BaseFragment {
      */
     private void orderBySellAmount(final WebView webView) {
 
+        getHotSellsListData(webView,true);
 
-//		getHotSellsList(webView,true);
         // 拼接业务逻辑
-        String logicStr0 = "getLengthByCn(\"item J_tabItem\");";
-        String completeJs0 = doAutoTest(logicStr0);
-        loadUrl(webView, completeJs0);
-
-        doSleep(2);
-        UIUtils.postDelayed(new Runnable() {
-            @Override
-            public void run() {
-
-                if (mLocalMethod.isBooleanIndex()) {
-                    String logicStr = "doClickByCNandPosition(\"item J_tabItem\",1);";
-                    String completeJs = doAutoTest(logicStr);
-                    loadUrl(webView, completeJs);
-                    UIUtils.postDelayed(new Runnable() {
-                        @Override
-                        public void run() {
-//							getHotSellsList(webView,true);
-
-                            String url = webView.getUrl();
-                            Log.e(TAG, "url: " + url);
-                            String replace = url.replace("sort=default", "sort=d");
-                            webView.loadUrl(replace);
-                            doSleep(3);
-                            getHotSellsListData(webView,true);
-                        }
-                    }, 6000);
-
-                } else {
-                    String logicStr = "doClickByCN(\"js-nav-csch fun csch\",1);";
-                    String completeJs = doAutoTest(logicStr);
-                    loadUrl(webView, completeJs);
-                    doSleep(6);
-                    selectAllShop(webView);
-                    doSleep(6);
-                    getHotSellsList(webView, false);
-                    doSleep(6);
-                    getHotSellsListData(webView, false);
-                }
-            }
-        }, 2000);
+//        String logicStr0 = "getLengthByCn(\"item J_tabItem\");";
+//        String completeJs0 = doAutoTest(logicStr0);
+//        loadUrl(webView, completeJs0);
+//
+//        doSleep(2);
+//        UIUtils.postDelayed(new Runnable() {
+//            @Override
+//            public void run() {
+//
+//                if (mLocalMethod.isBooleanIndex()) {
+//                    String logicStr = "doClickByCNandPosition(\"item J_tabItem\",1);";
+//                    String completeJs = doAutoTest(logicStr);
+//                    loadUrl(webView, completeJs);
+//                    UIUtils.postDelayed(new Runnable() {
+//                        @Override
+//                        public void run() {
+////							getHotSellsList(webView,true);
+//
+//                            String url = webView.getUrl();
+//                            Log.e(TAG, "url: " + url);
+//                            String replace = url.replace("sort=default", "sort=d");
+//                            webView.loadUrl(replace);
+//                            doSleep(3);
+//                            getHotSellsListData(webView,true);
+//                        }
+//                    }, 6000);
+//
+//                } else {
+//                    String logicStr = "doClickByCN(\"js-nav-csch fun csch\",1);";
+//                    String completeJs = doAutoTest(logicStr);
+//                    loadUrl(webView, completeJs);
+//                    doSleep(6);
+//                    selectAllShop(webView);
+//                    doSleep(6);
+//                    getHotSellsList(webView, false);
+//                    doSleep(6);
+//                    getHotSellsListData(webView, false);
+//                }
+//            }
+//        }, 2000);
 
 
     }
@@ -331,7 +331,7 @@ public class WA_YundaFragment extends WA_BaseFragment {
         loadUrl(webView, completeJs);
     }
 
-    private void getHotSellsList(WebView webView, boolean isTmall) {
+    public void getHotSellsList(WebView webView, boolean isTmall) {
         if (isTmall) {
             String logicStr = "doTapByCN(\"o_item J_itemSort J_sortType_d\",0);";
             String completeJs = doAutoTest(logicStr);
@@ -347,7 +347,7 @@ public class WA_YundaFragment extends WA_BaseFragment {
 
     }
 
-    private void getHotSellsListData(WebView webView, boolean isTmall) {
+    public void getHotSellsListData(WebView webView, boolean isTmall) {
         String logicStr;
         if (isTmall) {
             logicStr = "getTmallHotSellsListData();";
@@ -357,6 +357,20 @@ public class WA_YundaFragment extends WA_BaseFragment {
 
         String completeJs = doAutoTest(logicStr);
         loadUrl(webView, completeJs);
+    }
+
+
+    public void initAccountInfo(WebView webView) {
+//        jq_name  idNumber jq_mobile
+
+        String logicStr = "doInputByRI(\"jq_name\",\"" + "陈飞" + "\",2);"
+                +"doInputByRI(\"idNumber\",\"" + "430481199003264556" + "\",2);"
+                +"doInputByRI(\"jq_mobile\",\"" + "13148439851" + "\",2);";
+
+//        String logicStr = "doClickByCN(\"jdriveInfo.idNumber\",2);";
+        String completeJs = doAutoTest(logicStr);
+        loadUrl(webView, completeJs);
+
     }
 
     /**

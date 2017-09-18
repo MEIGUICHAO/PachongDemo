@@ -84,7 +84,7 @@ function getTmallHotSellsListData() {
   var title = document.getElementsByClassName("tii_title");
   var price = document.getElementsByClassName("tii_price");
   var num = document.getElementsByClassName("tii_sold");
-//    localMethod.JI_LOG("length£º"+tab.length);
+    localMethod.JI_showToast("length:"+title.length);
 
 
     for (var i = 0; i <title.length ; i++) {
@@ -92,6 +92,9 @@ function getTmallHotSellsListData() {
         localMethod.JI_LOG(price[i].innerHTML);
         localMethod.JI_LOG(num[i].innerHTML);
     }
+
+
+
 
 }
 
